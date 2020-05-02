@@ -1,0 +1,7 @@
+/bin/
+/.gradle/
+/build/
+/logs/
+/.settings/
+
+/.gradle/4.3/taskHistory/taskHistory.bin

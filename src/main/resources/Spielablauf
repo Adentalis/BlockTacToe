@@ -1,0 +1,32 @@
+Spielablauf:
+
+1. (Spieler 1 meldet sich mit seiner Wallet an. privatekey + password):
+	--> bis jetzt benutzt Spieler 1 die vordefinierte Wallet1
+	(gleiches gilt für Spieler 2)
+2. Spieler 1 überweist Geld an Smart Contract:
+	Aufruf der deposit(BigInteger ether)
+	(gleiches gilt für Spieler 2)
+	--> es müssen mind. 0,001 eth in der eigenen Wallet bleiben
+3. Spieler 1 fordert Spieler 2 heraus:
+	Aufruf von initGame(String AdresseSpieler2, BigInteger Wetteinsatz)
+		AdresseSpieler2: Public Key der Wallet von Spieler 2
+		Wetteinsatz: Höhe des Wetteinsatzes als BigInteger
+		--> Beispiel: 0,1 Ether Einsatz: BigInteger bi = 0,1, Convert.Unit.Ether
+4. Client überprüft regelmäßig das hasToAcceptTheGame Mapping
+	--> sobald ein Mapping existiert (!NULL): Spieler 2 wird auf gefundenes Spiel hingewiesen(mit Wetteinsatz, um den es geht (Annehmen/Ablehnen)
+		Annehmen --> acceptGameRequest wird ausgeführt
+		Ablehnen --> cancelGame (muss noch implementiert werden)
+5. Popup: Warte auf die Blockchain, bis das Spiel gestartet ist
+	und überprüft ob playerGameId != 0 ist
+	
+	
+6. GUI geht sobald playerGameID != 0 ist in den Spielview
+7. GameID muss gespeichert werden
+8. Eine Funktion muss überprüfen welcher Zug (turn) und welcher Spieler dran ist (unabhängig vom Spielzustand), um dem Client mitteilen zu können,
+	welcher Spieler an der Reihe ist
+9. Client muss konstant GameState abrufen (games[gameid].GameState), wenn TIE, PLAYER1WIN, PLAYER2WIN entsprechende Nachricht anzeigen
+10. Wenn Client an der Reihe ist:
+	- Spielfeld aktivieren
+	- bei Click auf ein Feld doTurn aufrufen
+
+

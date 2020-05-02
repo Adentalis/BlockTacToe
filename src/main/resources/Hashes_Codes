@@ -1,0 +1,70 @@
+Daniels Wallet
+0x67a424e5418f006d66562f8cb94ADFdf98A6D4b8
+vital just maple tomato humble quick horn gorilla cereal access two mom
+zugzugzug
+
+
+Patrick B Wallet
+0x2360719105f7fab60e060bf585d5728ce7cc126f
+
+12345678
+
+wallet 3 
+0xc2a935fEA5b2985A91CA35eB980d6BA89Bf2A776
+leader wisdom apple cupboard taxi barely dignity enact drop very hire doctor#
+fhwsistdoof
+
+
+
+Beide zuammen
+"0x67a424e5418f006d66562f8cb94ADFdf98A6D4b8" , "0x2360719105f7fab60e060bf585d5728ce7cc126f"
+
+
+Infura Token
+infura api key: uhnXLnEun9ncsmwv0iku
+6080604052600436106100
+Contract Versionen
+1- 0xd20dcB1059ae5b8e2d93DA583d4F118A3Fb84f1c
+2- 0x1659b0693e3dd90eaB396498a5eD784c3Ee6F7A0
+
+/* FERTIG
+    Ermittle den Startspieler mittels einer semiRandom Funktion
+    In Solidity gibt es keine Random Funktion
+    
+    Es wird eine Hashfunktion verwendet, welche den aktuellen Block, die Blockschwierigkeit
+    und die gameId verwendet
+    Aus dieser wird ein uint8 gebildet und modulo 2 genommen um die beiden Startmöglichekiten zu erhalten
+    
+    Dies ist keine sichere RandomFunktion und könnte durch Miner missbraucht werden. 
+    Lohnt sich aber bei solch kleinen Einsätzen und bei TicTacToe sowieso nicht, da es im Endeffekt egal ist wer anfängt
+    da das Spiel im Normalfall unentschieden ausgeht, deshalb reicht diese RandomFunktion in unserem Fall aus
+    
+    Missbraucht werden in dem Sinne, dass man selber versuchen könnte den Block zu minen und die Transaktion nur hinzufügen
+    wenn man selber Spieler 1 ist.
+    
+    Könnte missbracuht werden in einem SmartContract wo man Geld hinschickt und zu 50% gewinnt man das doppelte
+    oder eben garnichts, vergleichbar zu Roulett wo man auf rot/schwarz ~50% wetten kann.
+    
+    In so einem Fall könnte ich selber versuchen zu minen und jedesmal diesen SmartContract mit der jeweiligen Transaktion
+    simulieren und diese Transaktion nur aufnehmen wenn ich auch tatsächlich gewinne. 
+    
+    Ab einem Einsatz von mehreren Tausend Euro würde sich dass dann auch anfangen zu lohnen, es überhaupt zu versuchen 
+    alleine einen Block zu minen
+    */
+    
+    /*
+    Speichert eine Spielanfrage
+    Wenn Spieler 1, Spieler 2 um ein Spiel bittet um 0.1 eth z.B 
+    steht dann sp2 -> sp1 -> 0.1 darin. So kann Sp2 auf die Spielanfrage zugreifen
+    
+    Wenn Spieler 2 die Spielanfrage von Spieler 1 akzepieren will, würde dass gameRequest
+    double mapping nicht ausreichen, da Spieler 2 nicht weiß wer Spieler 1 überhaupt ist.
+    Es steht zwar drinnen, aber man benötigt eben denoch auch den key für das innere mapping
+    um den Spielbetrag zu erhalten. Deshalb benötigen wir das hasToAcceptTheGame mapping, da darin
+    drinnen steht, wie die Spieleraddresse des Spielers lautet welcher, die gameRequest gestellt hat.
+    
+    Das wantsToPlayWith mapping wird benötigt um Spieler 1 ebenfalls als Key und nicht nur als Value 
+    zu speichern. Somit kennt man auch den Gegner von Spieler 1 und kann auf das gameRequest vollständig 
+    zugreifen und das Spiel nachträgluch stornieren, falls Spieler 1 die Anfrage zurückziehen will, bevor 
+    Spieler 2 diese annimmt.
+    */
